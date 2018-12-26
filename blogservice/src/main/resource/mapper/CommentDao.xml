@@ -28,7 +28,7 @@
     delete from comment
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="BaseResultMap" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.a3.blog.entity.CommentEntity" useGeneratedKeys="true">
     insert into comment (parent_comment_id, blog_id, author_id, 
       author_name, reply_author_id, comment_content, 
       likes, created_time)
@@ -36,7 +36,7 @@
       #{authorName,jdbcType=VARCHAR}, #{replyAuthorId,jdbcType=VARCHAR}, #{commentContent,jdbcType=VARCHAR}, 
       #{likes,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="BaseResultMap" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.a3.blog.entity.CommentEntity" useGeneratedKeys="true">
     insert into comment
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="parentCommentId != null">

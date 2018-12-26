@@ -90,42 +90,6 @@ public class BlogEntity implements Serializable {
         this.content = content;
     }
 
-    @Override
-    public boolean equals(Object that) {
-        if (this == that) {
-            return true;
-        }
-        if (that == null) {
-            return false;
-        }
-        if (getClass() != that.getClass()) {
-            return false;
-        }
-        BlogEntity other = (BlogEntity) that;
-        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getTitle() == null ? other.getTitle() == null : this.getTitle().equals(other.getTitle()))
-            && (this.getAuthorId() == null ? other.getAuthorId() == null : this.getAuthorId().equals(other.getAuthorId()))
-            && (this.getLikes() == null ? other.getLikes() == null : this.getLikes().equals(other.getLikes()))
-            && (this.getCreatedTime() == null ? other.getCreatedTime() == null : this.getCreatedTime().equals(other.getCreatedTime()))
-            && (this.getModifiedTime() == null ? other.getModifiedTime() == null : this.getModifiedTime().equals(other.getModifiedTime()))
-            && (this.getModifiedBy() == null ? other.getModifiedBy() == null : this.getModifiedBy().equals(other.getModifiedBy()))
-            && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()));
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getTitle() == null) ? 0 : getTitle().hashCode());
-        result = prime * result + ((getAuthorId() == null) ? 0 : getAuthorId().hashCode());
-        result = prime * result + ((getLikes() == null) ? 0 : getLikes().hashCode());
-        result = prime * result + ((getCreatedTime() == null) ? 0 : getCreatedTime().hashCode());
-        result = prime * result + ((getModifiedTime() == null) ? 0 : getModifiedTime().hashCode());
-        result = prime * result + ((getModifiedBy() == null) ? 0 : getModifiedBy().hashCode());
-        result = prime * result + ((getContent() == null) ? 0 : getContent().hashCode());
-        return result;
-    }
 
     @Override
     public String toString() {

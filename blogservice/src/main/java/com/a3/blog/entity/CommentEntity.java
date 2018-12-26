@@ -101,45 +101,6 @@ public class CommentEntity implements Serializable {
     }
 
     @Override
-    public boolean equals(Object that) {
-        if (this == that) {
-            return true;
-        }
-        if (that == null) {
-            return false;
-        }
-        if (getClass() != that.getClass()) {
-            return false;
-        }
-        CommentEntity other = (CommentEntity) that;
-        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getParentCommentId() == null ? other.getParentCommentId() == null : this.getParentCommentId().equals(other.getParentCommentId()))
-            && (this.getBlogId() == null ? other.getBlogId() == null : this.getBlogId().equals(other.getBlogId()))
-            && (this.getAuthorId() == null ? other.getAuthorId() == null : this.getAuthorId().equals(other.getAuthorId()))
-            && (this.getAuthorName() == null ? other.getAuthorName() == null : this.getAuthorName().equals(other.getAuthorName()))
-            && (this.getReplyAuthorId() == null ? other.getReplyAuthorId() == null : this.getReplyAuthorId().equals(other.getReplyAuthorId()))
-            && (this.getCommentContent() == null ? other.getCommentContent() == null : this.getCommentContent().equals(other.getCommentContent()))
-            && (this.getLikes() == null ? other.getLikes() == null : this.getLikes().equals(other.getLikes()))
-            && (this.getCreatedTime() == null ? other.getCreatedTime() == null : this.getCreatedTime().equals(other.getCreatedTime()));
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getParentCommentId() == null) ? 0 : getParentCommentId().hashCode());
-        result = prime * result + ((getBlogId() == null) ? 0 : getBlogId().hashCode());
-        result = prime * result + ((getAuthorId() == null) ? 0 : getAuthorId().hashCode());
-        result = prime * result + ((getAuthorName() == null) ? 0 : getAuthorName().hashCode());
-        result = prime * result + ((getReplyAuthorId() == null) ? 0 : getReplyAuthorId().hashCode());
-        result = prime * result + ((getCommentContent() == null) ? 0 : getCommentContent().hashCode());
-        result = prime * result + ((getLikes() == null) ? 0 : getLikes().hashCode());
-        result = prime * result + ((getCreatedTime() == null) ? 0 : getCreatedTime().hashCode());
-        return result;
-    }
-
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());
