@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.a3.blog.dao.CommentDao">
+  <resultMap id="BaseResultMap" type="com.a3.blog.entity.CommentEntity">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="parent_comment_id" jdbcType="INTEGER" property="parentCommentId" />
+    <result column="blog_id" jdbcType="INTEGER" property="blogId" />
+    <result column="author_id" jdbcType="VARCHAR" property="authorId" />
+    <result column="author_name" jdbcType="VARCHAR" property="authorName" />
+    <result column="reply_author_id" jdbcType="VARCHAR" property="replyAuthorId" />
+    <result column="comment_content" jdbcType="VARCHAR" property="commentContent" />
+    <result column="likes" jdbcType="INTEGER" property="likes" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    id, parent_comment_id, blog_id, author_id, author_name, reply_author_id, comment_content, 
+    likes, created_time
+  </sql>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from comment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from comment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="BaseResultMap" useGeneratedKeys="true">
+    insert into comment (parent_comment_id, blog_id, author_id, 
+      author_name, reply_author_id, comment_content, 
+      likes, created_time)
+    values (#{parentCommentId,jdbcType=INTEGER}, #{blogId,jdbcType=INTEGER}, #{authorId,jdbcType=VARCHAR}, 
+      #{authorName,jdbcType=VARCHAR}, #{replyAuthorId,jdbcType=VARCHAR}, #{commentContent,jdbcType=VARCHAR}, 
+      #{likes,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="BaseResultMap" useGeneratedKeys="true">
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="parentCommentId != null">
+        parent_comment_id,
+      </if>
+      <if test="blogId != null">
+        blog_id,
+      </if>
+      <if test="authorId != null">
+        author_id,
+      </if>
+      <if test="authorName != null">
+        author_name,
+      </if>
+      <if test="replyAuthorId != null">
+        reply_author_id,
+      </if>
+      <if test="commentContent != null">
+        comment_content,
+      </if>
+      <if test="likes != null">
+        likes,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="parentCommentId != null">
+        #{parentCommentId,jdbcType=INTEGER},
+      </if>
+      <if test="blogId != null">
+        #{blogId,jdbcType=INTEGER},
+      </if>
+      <if test="authorId != null">
+        #{authorId,jdbcType=VARCHAR},
+      </if>
+      <if test="authorName != null">
+        #{authorName,jdbcType=VARCHAR},
+      </if>
+      <if test="replyAuthorId != null">
+        #{replyAuthorId,jdbcType=VARCHAR},
+      </if>
+      <if test="commentContent != null">
+        #{commentContent,jdbcType=VARCHAR},
+      </if>
+      <if test="likes != null">
+        #{likes,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.a3.blog.entity.CommentEntity">
+    update comment
+    <set>
+      <if test="parentCommentId != null">
+        parent_comment_id = #{parentCommentId,jdbcType=INTEGER},
+      </if>
+      <if test="blogId != null">
+        blog_id = #{blogId,jdbcType=INTEGER},
+      </if>
+      <if test="authorId != null">
+        author_id = #{authorId,jdbcType=VARCHAR},
+      </if>
+      <if test="authorName != null">
+        author_name = #{authorName,jdbcType=VARCHAR},
+      </if>
+      <if test="replyAuthorId != null">
+        reply_author_id = #{replyAuthorId,jdbcType=VARCHAR},
+      </if>
+      <if test="commentContent != null">
+        comment_content = #{commentContent,jdbcType=VARCHAR},
+      </if>
+      <if test="likes != null">
+        likes = #{likes,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.a3.blog.entity.CommentEntity">
+    update comment
+    set parent_comment_id = #{parentCommentId,jdbcType=INTEGER},
+      blog_id = #{blogId,jdbcType=INTEGER},
+      author_id = #{authorId,jdbcType=VARCHAR},
+      author_name = #{authorName,jdbcType=VARCHAR},
+      reply_author_id = #{replyAuthorId,jdbcType=VARCHAR},
+      comment_content = #{commentContent,jdbcType=VARCHAR},
+      likes = #{likes,jdbcType=INTEGER},
+      created_time = #{createdTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
