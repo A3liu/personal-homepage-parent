@@ -1,0 +1,21 @@
+#设置自己的程序名称
+spring:
+  application:
+    name: blog-services
+  datasource:
+    url: jdbc:mysql://localhost:3306/ph_blog?useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+eureka:
+  client:
+    #是否向服务中心注册自己
+    register-with-eureka: true
+    #设置eureka服务中心的地址
+    service-url:
+      defaultZone: http://localhost:3333/eureka
+#设置自己启动的端口
+server:
+  port: 3332
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
