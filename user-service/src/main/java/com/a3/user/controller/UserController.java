@@ -5,6 +5,7 @@ import com.a3.user.dao.UserDao;
 import com.a3.user.entity.UserEntity;
 import com.a3.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,9 +18,15 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping("test")
+    @GetMapping("test")
     public String test(){
         return userDao.selectByPrimaryKey("1").toString();
+    }
+
+    @RequestMapping("/userTest")
+    public String userTest(String id){
+        System.out.println(id);
+        return "userService"+id;
     }
 
     @RequestMapping("/createUser")
