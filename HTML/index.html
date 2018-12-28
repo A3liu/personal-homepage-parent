@@ -16,13 +16,16 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 
-<body>
+<body style="background-image: url('images/bg-01.jpg'); background-size: cover;">
 
+<a class="time" style="font: '微软雅黑'; font-size: 30px;">time</a>
+
+	<!-- 登录片段 开始   -->
 	<div class="limiter">
-		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
-			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				<form class="login100-form validate-form">
-					<span class="login100-form-title p-b-49">登录</span>
+		<div class="container-login100" >
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54" >
+				<form class="login100-form validate-form" >
+					<span class="login100-form-title p-b-49" style="background-image: url('images/login-img.png');">登录</span>
 
 					<div class="wrap-input100 validate-input m-b-23" data-validate="请输入用户名">
 						<span class="label-input100">用户名</span>
@@ -66,66 +69,100 @@
 					</div>
 
 					<div class="flex-col-c p-t-25">
-						<a href="javascript:" class="txt2" style="color:green;font-size:20px" title="立即注册">立即注册</a>
+						<a href="javascript:" class="txt2" style="color:green;font-size:20px" title="立即注册" onclick="hideLogin()">立即注册</a>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
-
-	<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54" style="display:none">
+	<!-- 登录片段 开始   -->
+	
+	<!-- 注册片段 开始   -->
+	<div class="limiter2" style="display: none">
+		<div class="container-login100">
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 				<form class="login100-form validate-form">
-					<span class="login100-form-title p-b-49">登录</span>
+					<span class="login100-form-title p-b-49">注册界面</span>
 
 					<div class="wrap-input100 validate-input m-b-23" data-validate="请输入用户名">
 						<span class="label-input100">用户名</span>
+						<span style="color: red;padding-left: 20px;" class="secmsg">用户名已被注册</span>
 						<input class="input100" type="text" name="username" placeholder="请输入用户名" autocomplete="off">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="请输入密码">
 						<span class="label-input100">密码</span>
+						<span style="color: red;padding-left: 20px;" class="secmsg">密码格式不对</span>
 						<input class="input100" type="password" name="pass" placeholder="请输入密码">
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
 
-					<div class="text-right p-t-8 p-b-31">
-						<a href="javascript:" style="color:red;">忘记密码？</a>
+					<div class="wrap-input100 validate-input" data-validate="请再次输入密码">
+						<span class="label-input100">重复密码</span>
+						<span style="color: red;padding-left: 20px;" class="secmsg">两次密码输入不一致</span>
+						<input class="input100" type="password" name="pass" placeholder="请输入密码">
+						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
-
+					
+					<div class="wrap-input100 validate-input" data-validate="请输入邮箱地址">
+						<span class="label-input100">邮箱</span>
+						<span style="color: red;padding-left: 20px;" class="secmsg">邮箱已被注册</span>
+						<input class="input100" type="password" name="pass" placeholder="请输入邮箱地址">
+						<span class="focus-input100" data-symbol="&#xf190;"></span>
+					</div>
+					
+					<div class="wrap-input100 validate-input" data-validate="验证码">
+						<span class="label-input100">验证码</span>
+						<span style="color: red;padding-left: 20px;" class="secmsg">验证码不正确</span>
+						<input class="input100" type="password" name="pass" placeholder="请输入验证码">
+						<span class="focus-input100" data-symbol="&#xf190;"></span>
+					</div>
+					
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">登 录</button>
+							<button class="login100-form-btn">注册</button>
 						</div>
 					</div>
 					
-					<div class="txt1 text-center p-t-54 p-b-20">
-						<span>第三方登录</span>
-					</div>
-
-					<div class="flex-c-m">
-						<a href="#" class="login100-social-item bg1">
-							<i class="fa fa-wechat"></i>
-						</a>
-
-						<a href="#" class="login100-social-item bg2">
-							<i class="fa fa-qq"></i>
-						</a>
-
-						<a href="#" class="login100-social-item bg3">
-							<i class="fa fa-weibo"></i>
-						</a>
-					</div>
-
 					<div class="flex-col-c p-t-25">
-						<a href="javascript:" class="txt2" style="color:green;font-size:20px" title="立即注册">立即注册</a>
+						<a href="javascript:" class="txt2" style="color:green;font-size:20px" title="立即登录" onclick="hideRegist()">立即登录</a>
 					</div>
 				</form>
 			</div>
+		</div>
+	</div>
+	<!-- 注册片段 结束   -->
 	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 	<script src="js/main.js"></script>
+	<script>
+		//时间计数
+		window.setInterval(function(){$(".time").html(time())},100);
+		function time()
+		{
+			var now=new Date()
+			var min=now.getSeconds()
+			if(min<10)
+			{
+				min="0"+min
+			}
+			return now.toLocaleDateString()+"  "+now.getHours()+":"+now.getMinutes()+":"+min
+		}
+		
+		//登录界面注册界面相互切换
+		function hideLogin(){
+			$(".limiter").hide(300)
+			$(".limiter2").show(300)
+		}
+		
+		//登录界面注册界面相互切换
+		function hideRegist(){
+			$(".limiter2").hide(300)
+			$(".limiter").show(300)
+		}
+	</script>
 </body>
 
 </html>
