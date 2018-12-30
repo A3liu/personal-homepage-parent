@@ -1,168 +1,598 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	<title>非凡博客登录页面</title>
-	<meta name="keywords" content="" />
-	<meta name="description" content="" /> 
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-</head>
+		<title>非凡博客登录页面</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
 
-<body style="background-image: url('images/bg-01.jpg'); background-size: cover;">
+		<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+		<link rel="stylesheet" type="text/css" href="css/util.css">
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+	</head>
 
-<a class="time" style="font: '微软雅黑'; font-size: 30px;">time</a>
+	<body style="background-image: url('images/login2.jpg'); background-size: cover;">
 
-	<!-- 登录片段 开始   -->
-	<div class="limiter">
-		<div class="container-login100" >
-			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54" >
-				<form class="login100-form validate-form" >
-					<span class="login100-form-title p-b-49" style="background-image: url('images/login-img.png');">登录</span>
+		<a class="time" style="font: '微软雅黑'; font-size: 30px;">time</a>
 
-					<div class="wrap-input100 validate-input m-b-23" data-validate="请输入用户名">
-						<span class="label-input100">用户名</span>
-						<input class="input100" type="text" name="username" placeholder="请输入用户名" autocomplete="off">
-						<span class="focus-input100" data-symbol="&#xf206;"></span>
-					</div>
+		<!-- 登录片段 开始   -->
+		<div class="limiter">
+			<div class="container-login100">
+				<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54" style="background-color:rgba(254,255,253,0.1)">
+					<form class="login100-form validate-form">
+						<span class="login100-form-title p-b-49" style="background-image: url('images/login-img.png');">登录</span>
 
-					<div class="wrap-input100 validate-input" data-validate="请输入密码">
-						<span class="label-input100">密码</span>
-						<input class="input100" type="password" name="pass" placeholder="请输入密码">
-						<span class="focus-input100" data-symbol="&#xf190;"></span>
-					</div>
-
-					<div class="text-right p-t-8 p-b-31">
-						<a href="javascript:" style="color:red;">忘记密码？</a>
-					</div>
-
-					<div class="container-login100-form-btn">
-						<div class="wrap-login100-form-btn">
-							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">登 录</button>
+						<div class="wrap-input100 validate-input m-b-23" data-validate="请输入用户名">
+							<span class="label-input100" style="font-size: 20px;">用户名</span>
+							<input class="input100" type="text" name="user.name" placeholder="请输入用户名" autocomplete="off" >
+							<span class="focus-input100" data-symbol="&#xf206;"></span>
 						</div>
-					</div>
-					
-					<div class="txt1 text-center p-t-54 p-b-20">
-						<span>第三方登录</span>
-					</div>
 
-					<div class="flex-c-m">
-						<a href="#" class="login100-social-item bg1">
-							<i class="fa fa-wechat"></i>
-						</a>
+						<div class="wrap-input100 validate-input" data-validate="密码格式不正确">
+							<span class="label-input100" style="font-size: 20px;">密码</span>
+							<input class="input100" type="password" name="user.password" placeholder="请输入密码">
+							<span class="focus-input100" data-symbol="&#xf190;"></span>
+						</div>
 
-						<a href="#" class="login100-social-item bg2">
-							<i class="fa fa-qq"></i>
-						</a>
+						<div class="text-right p-t-8 p-b-31">
+							<a href="javascript:" style="color:red;font-size: 15px;" title="忘记密码">忘记密码？</a>
+						</div>
 
-						<a href="#" class="login100-social-item bg3">
-							<i class="fa fa-weibo"></i>
-						</a>
-					</div>
+						<div class="container-login100-form-btn">
+							<div class="wrap-login100-form-btn">
+								<div class="login100-form-bgbtn"></div>
+								<button class="login100-form-btn" onclick="login()">登 录</button>
+							</div>
+						</div>
 
-					<div class="flex-col-c p-t-25">
-						<a href="javascript:" class="txt2" style="color:green;font-size:20px" title="立即注册" onclick="hideLogin()">立即注册</a>
-					</div>
-				</form>
+						<div class="txt1 text-center p-t-54 p-b-20">
+							<span>第三方登录</span>
+						</div>
+
+						<div class="flex-c-m">
+							<a href="#" class="login100-social-item bg1">
+								<i class="fa fa-wechat"></i>
+							</a>
+
+							<a href="#" class="login100-social-item bg2">
+								<i class="fa fa-qq"></i>
+							</a>
+
+							<a href="#" class="login100-social-item bg3">
+								<i class="fa fa-weibo"></i>
+							</a>
+						</div>
+
+						<div class="flex-col-c p-t-25">
+							<a href="javascript:" class="txt2" style="color:green;font-size:20px" title="立即注册" onclick="hideLogin()">立即注册</a>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
-	</div>
-	<!-- 登录片段 开始   -->
-	
-	<!-- 注册片段 开始   -->
-	<div class="limiter2" style="display: none">
-		<div class="container-login100">
-			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				<form class="login100-form validate-form">
-					<span class="login100-form-title p-b-49">注册界面</span>
+		<!-- 登录片段 开始   -->
 
-					<div class="wrap-input100 validate-input m-b-23" data-validate="请输入用户名">
-						<span class="label-input100">用户名</span>
-						<span style="color: red;padding-left: 20px;" class="secmsg">用户名已被注册</span>
-						<input class="input100" type="text" name="username" placeholder="请输入用户名" autocomplete="off">
-						<span class="focus-input100" data-symbol="&#xf206;"></span>
-					</div>
+		<!-- 注册片段 开始   -->
+		<div class="limiter2" style="display: none">
+			<div class="container-login100">
+				<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54" style="background-color:rgba(254,255,253,0.1)">
+					<form class="login100-form validate-form">
+						<span class="login100-form-title p-b-49" style="background-image: url('images/login-img.png');">注册界面</span>
 
-					<div class="wrap-input100 validate-input" data-validate="请输入密码">
-						<span class="label-input100">密码</span>
-						<span style="color: red;padding-left: 20px;" class="secmsg">密码格式不对</span>
-						<input class="input100" type="password" name="pass" placeholder="请输入密码">
-						<span class="focus-input100" data-symbol="&#xf190;"></span>
-					</div>
-
-					<div class="wrap-input100 validate-input" data-validate="请再次输入密码">
-						<span class="label-input100">重复密码</span>
-						<span style="color: red;padding-left: 20px;" class="secmsg">两次密码输入不一致</span>
-						<input class="input100" type="password" name="pass" placeholder="请输入密码">
-						<span class="focus-input100" data-symbol="&#xf190;"></span>
-					</div>
-					
-					<div class="wrap-input100 validate-input" data-validate="请输入邮箱地址">
-						<span class="label-input100">邮箱</span>
-						<span style="color: red;padding-left: 20px;" class="secmsg">邮箱已被注册</span>
-						<input class="input100" type="password" name="pass" placeholder="请输入邮箱地址">
-						<span class="focus-input100" data-symbol="&#xf190;"></span>
-					</div>
-					
-					<div class="wrap-input100 validate-input" data-validate="验证码">
-						<span class="label-input100">验证码</span>
-						<span style="color: red;padding-left: 20px;" class="secmsg">验证码不正确</span>
-						<input class="input100" type="password" name="pass" placeholder="请输入验证码">
-						<span class="focus-input100" data-symbol="&#xf190;"></span>
-					</div>
-					
-					<div class="container-login100-form-btn">
-						<div class="wrap-login100-form-btn">
-							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">注册</button>
+						<div class="wrap-input100 validate-input m-b-23" data-validate="请输入用户名">
+							<span class="label-input100" style="font-size: 20px;">用户名</span>
+							<input class="input100" type="text" name="user.name" placeholder="请输入用户名" autocomplete="off" id="username">
+							<span class="focus-input100" data-symbol="&#xf206;"></span>
 						</div>
-					</div>
-					
-					<div class="flex-col-c p-t-25">
-						<a href="javascript:" class="txt2" style="color:green;font-size:20px" title="立即登录" onclick="hideRegist()">立即登录</a>
-					</div>
-				</form>
+
+						<div class="wrap-input100 validate-input" data-validate="请输入密码">
+							<span class="label-input100" style="font-size: 20px;">密码</span>
+							<input class="input100" type="password" name="user.password" placeholder="请输入密码" id="password">
+							<span class="focus-input100" data-symbol="&#xf190;"></span>
+						</div>
+
+						<div class="wrap-input100 validate-input" data-validate="请再次输入密码">
+							<span class="label-input100" style="font-size: 20px;">重复密码</span>
+							<input class="input100" type="password" name="pass" placeholder="请输入密码">
+							<span class="focus-input100" data-symbol="&#xf190;"></span>
+						</div>
+
+						<div class="wrap-input100 validate-input" data-validate="请输入邮箱地址">
+							<span class="label-input100" style="font-size: 20px;">邮箱</span>
+							<input class="input100" type="text" name="user.email" placeholder="请输入邮箱地址">
+							<span class="focus-input100" data-symbol="&#xf190;"></span>
+						</div>
+
+						<div class="wrap-input100 validate-input" data-validate="验证码">
+							<span class="label-input100" style="font-size: 20px;">验证码</span>
+							<button class="className">发送验证码</button>
+							<input class="input100" type="password" name="pass" placeholder="请输入验证码">
+							<span class="focus-input100" data-symbol="&#xf190;"></span>
+						</div>
+
+						<div class="container-login100-form-btn">
+							<div class="wrap-login100-form-btn">
+								<div class="login100-form-bgbtn"></div>
+								<button class="login100-form-btn">注册</button>
+							</div>
+						</div>
+
+						<div class="flex-col-c p-t-25">
+							<a href="javascript:" class="txt2" style="color:green;font-size:20px" title="立即登录" onclick="hideRegist()">立即登录</a>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
-	</div>
-	<!-- 注册片段 结束   -->
-	
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-	<script src="js/main.js"></script>
-	<script>
-		//时间计数
-		window.setInterval(function(){$(".time").html(time())},100);
-		function time()
-		{
-			var now=new Date()
-			var min=now.getSeconds()
-			if(min<10)
-			{
-				min="0"+min
+		<!-- 注册片段 结束   -->
+
+		<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+		<script src="js/main.js"></script>
+		<script>
+			//时间计数
+			window.setInterval(function() {
+				$(".time").html(time())
+			}, 100);
+
+			function time() {
+				var now = new Date()
+				var min = now.getSeconds()
+				if(min < 10) {
+					min = "0" + min
+				}
+				return now.toLocaleDateString() + "  " + now.getHours() + ":" + now.getMinutes() + ":" + min
 			}
-			return now.toLocaleDateString()+"  "+now.getHours()+":"+now.getMinutes()+":"+min
-		}
-		
-		//登录界面注册界面相互切换
-		function hideLogin(){
-			$(".limiter").hide(300)
-			$(".limiter2").show(300)
-		}
-		
-		//登录界面注册界面相互切换
-		function hideRegist(){
-			$(".limiter2").hide(300)
-			$(".limiter").show(300)
-		}
-	</script>
-</body>
+
+			//登录界面注册界面相互切换
+			function hideLogin() {
+				$(".limiter").hide(300)
+				$(".limiter2").show(300)
+			}
+
+			//登录界面注册界面相互切换
+			function hideRegist() {
+				$(".limiter2").hide(300)
+				$(".limiter").show(300)
+			}
+
+			//用户名合法性判断
+			$(":text").blur(function() { user(this,null) })
+			function user(obj,message)
+			{
+				var username = obj.value;
+				var parent = $(obj).parent();
+				//parent.removeClass('alert-validate');
+				if(obj.getAttribute('name') != 'user.name'){
+					return;
+				}
+				if(rulesConfig.space.validator(username)|!rulesConfig.username.validator(username))
+				{
+					if(message === null){
+						parent.addClass('alert-validate').attr('data-validate',"用户名格式不合法");
+					}else{
+						parent.addClass('alert-validate').attr('data-validate',message.toString());
+					}
+					return false;
+				}
+				return true;
+			}
+			
+			//密码合法性验证
+			$(':password').blur(function(){	pass(this,null)})
+			function pass(obj,message)
+			{
+				var password = obj.value;
+				var parent = $(obj).parent();
+				//parent.removeClass('alert-validate');
+				if(rulesConfig.space.validator(password)|!rulesConfig.pass.validator(password))
+				{
+					if(message===null){
+						parent.addClass('alert-validate').attr('data-validate','密碼格式不合法');
+					}else{
+						parent.addClass('alert-validate').attr('data-validate',message);
+					}
+					return false;
+				}
+				return true;
+			}
+			
+			//登录验证
+			function login(){
+				var flag = user($(":text"))&&pass($(':password'));
+				if(!flag){
+					return;
+				}
+				//something to do
+			}
+			
+			//发送验证码
+			$('.className').click(function(){
+				var time=60;
+				var btn=this;
+				btn.innerHTML='验证码('+60+')';
+				btn.disabled=true;
+				var start=window.setInterval(function(){
+					time--;
+					btn.innerHTML='验证码('+time+')';
+					if(time==0){
+						window.clearInterval(start);
+						btn.disabled=false;
+						btn.innerHTML='发送验证码';
+					}
+				},1000)
+			})
+			
+			//注册用户名验证
+			$("#username").blur(
+				function(){
+					var flag=user(this,null);
+					if(flag){
+						//查询数据库
+					}
+				}
+			)
+			
+			//注册密码重复验证
+			$('.input100').blur(function(){
+				var obj=this;
+				var parent=$(this).parent();
+				if(this.getAttribute('name')=='pass'){
+					var flag=pass(this,null);
+					if(flag){
+						var two = $("#password").val();
+						if( obj.value != two ){
+							parent.addClass('alert-validate').attr('data-validate','两次输入密码不一致');
+						}
+					}
+				}
+			})
+			
+			//邮箱验证
+			var email=false;
+			$('.input100').blur(function(){
+				var obj=this;
+				var parent = $(this).parent();
+				//parent.removeClass('alert-validate');
+				if(this.getAttribute('name') == 'user.email' ){
+					if(!rulesConfig.email.validator(obj.value)){
+						parent.addClass('alert-validate').attr('data-validate','邮箱地址不正确');
+					}
+				}
+			})
+			
+			var rulesConfig = {
+				/**
+				 * str.replace(/^\s+|\s+$/g, '')
+					解析：
+					str：要替换的字符串
+					\s : 表示 space ，空格
+					+： 一个或多个
+					^： 开始，^\s，以空格开始
+					$： 结束，\s$，以空格结束
+					|：或者
+					/g：global， 全局
+					/i 执行对大小写不敏感
+					/m 执行多行匹配
+					[abc]查找方括号之间的任何字符
+					[0-9]查找任何从0至9的数字
+					(x|y)查找任何以|分隔的选项
+					\d 查找数字
+					\s 查找空白字符
+					\b 匹配单词边界
+					\uxxxx 查找以十六进制数xxxx规定的Unicode字符
+					n+ 匹配任何包含至少一个n 的字符串
+					n* 匹配任何包含零个或多个n的字符串
+					n? 匹配任何包含零个或一个n的字符串
+				 */
+				email: {
+					validator: function(value){
+						return /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/.test(value);
+					},
+					message: '邮箱格式不对'
+				},
+				
+				pass: {
+					validator: function(value){
+						return /^[!@#$%^&*a-zA-Z0-9_.]{6,15}$/.test(value);
+					},
+					message: '密碼格式不正確'
+				},
+				
+				space: {//空格开头或者结尾匹配
+					validator: function(value){
+						return /^\s+|\s+$/.test(value);
+					},
+					message: '用户名不能以空格开头或者结尾'
+				},
+				
+				idcard: { // 验证身份证
+					validator: function(value) {
+						return /^\d{15}(\d{2}[A-Za-z0-9])?$/i.test(value);
+					},
+					message: '身份证号码格式不正确'
+				},
+				minLength: {
+					validator: function(value, param) {
+						return value.length >= param[0];
+					},
+					message: '请输入至少（2）个字符.'
+				},
+				length: {
+					validator: function(value, param) {
+						var len = $.trim(value).length;
+						return len >= param[0] && len <= param[1];
+					},
+					message: "输入内容长度必须介于{0}和{1}之间."
+				},
+				phone: { // 验证电话号码
+					validator: function(value) {
+						return /^((\(\d{2,3}\))|(\d{3}\-))?(\(0\d{2,3}\)|0\d{2,3}-)?[1-9]\d{6,7}(\-\d{1,4})?$/i.test(value);
+					},
+					message: '格式不正确,请使用下面格式:020-88888888'
+				},
+				mobile: { // 验证手机号码
+					validator: function(value) {
+						return /^(13|15|18)\d{9}$/i.test(value);
+					},
+					message: '手机号码格式不正确'
+				},
+				currency: { // 验证货币
+					validator: function(value) {
+						return /^\d+(\.\d+)?$/i.test(value);
+					},
+					message: '货币格式不正确'
+				},
+				decimal: {
+					validator: function(value, param) {
+						var regStr = "^\\d+(\\.\\d+)?$";
+						if(param)
+							regStr = "^\\+?(\\d*\\.\\d{" + param[0] + "})$";
+						var reg = new RegExp(regStr);
+						return reg.test(value);
+					},
+					message: '输入的数据格式不正确'
+				},
+				intOrFloat: { // 验证整数或小数
+					validator: function(value, param) {
+						var pattStr = "^\\d+(\\.\\d+)?$";
+						if(param) {
+							pattStr = "^\\d+(\\.\\d{0," + param[0] + "})?$";
+						}
+						return(new RegExp(pattStr)).test(value);
+						//如果有参数则验证小数的保留位数,下面是原正则表达式
+						//return /^\d+(\.\d+)?$/i.test(value);
+					},
+					message: '请输入数字，并确保格式正确'
+				},
+				integer: { // 验证整数
+					validator: function(value, param) {
+						var pattern = /^[+]?[0-9]+\d*$/i;
+						if(param)
+							pattern = new RegExp("^[0-9]\d{" + param[0] + "}$");
+						return pattern.test(value);
+					},
+					message: '请输入整数'
+				},
+				range: {
+					validator: function(value, param) {
+						var v1 = parseFloat(param[0]),
+							v2 = parseFloat(value),
+							v3 = parseFloat(param[1]);
+						if(isNaN(v1) || isNaN(v2) || isNaN(v3)) {
+							return false;
+						}
+						return(v1 <= v2 && v2 <= v3);
+					},
+					message: '请输入{0}到{1}之间的数字'
+				},
+				qq: { // 验证QQ,从10000开始
+					validator: function(value) {
+						return /^[1-9]\d{4,9}$/i.test(value);
+					},
+					message: 'QQ号码格式不正确'
+				},
+				age: { // 验证年龄
+					validator: function(value) {
+						return /^(?:[1-9][0-9]?|1[01][0-9]|120)$/i.test(value);
+					},
+					message: '年龄必须是0到120之间的整数'
+				},
+				chinese: { // 验证中文
+					validator: function(value, param) {
+
+						var pattern = new RegExp("^[\u4e00-\u9fa5]{" + param[0] + "," + param[1] + "}$");
+						return pattern.test(value);
+						//return /^[\Α-\￥]+$/i.test(value);
+					},
+					message: '请输入中文'
+				},
+				english: { // 验证英语
+					validator: function(value) {
+						return /^[A-Za-z]+$/i.test(value);
+					},
+					message: '请输入英文'
+				},
+				unnormal: { // 验证是否包含空格和非法字符
+					validator: function(value) {
+						return /.+/i.test(value);
+					},
+					message: '输入值不能为空和包含其他非法字符'
+				},
+				username: { // 验证用户名
+					validator: function(value) {
+						return /^[a-zA-Z]{1}([a-zA-Z0-9]|[._]){5,19}$/i.test(value);
+					},
+					message: '用户名不合法（字母开头，允许6-16字节，允许字母数字下划线）'
+				},
+				address: {
+					validator: function(value) {
+						var reg = /^[< >]+$/;
+						return !reg.test(value); //匹配是否含有特殊的字符
+					},
+					message: '只能输入包括汉字、字母、数字、符号'
+				},
+				faxno: { // 验证传真
+					validator: function(value) {
+						//            return /^[+]{0,1}(\d){1,3}[ ]?([-]?((\d)|[ ]){1,12})+$/i.test(value);
+						return /^((\(\d{2,3}\))|(\d{3}\-))?(\(0\d{2,3}\)|0\d{2,3}-)?[1-9]\d{6,7}(\-\d{1,4})?$/i.test(value);
+					},
+					message: '传真号码不正确'
+				},
+				zip: { // 验证邮政编码
+					validator: function(value) {
+						return /^[1-9]\d{5}$/i.test(value);
+					},
+					message: '邮政编码格式不正确'
+				},
+				ip: { // 验证IP地址
+					validator: function(value) {
+						return /d+.d+.d+.d+/i.test(value);
+					},
+					message: 'IP地址格式不正确'
+				},
+				name: { // 验证姓名，可以是中文或英文
+					validator: function(value) {
+						return /^[\Α-\￥]+$/i.test(value) | /^\w+[\w\s]+\w+$/i.test(value);
+					},
+					message: '请输入姓名'
+				},
+				date: { // 验证姓名，可以是中文或英文
+					validator: function(value) {
+						//格式yyyy-MM-dd或yyyy-M-d
+						return /^(?:(?!0000)[0-9]{4}([-]?)(?:(?:0?[1-9]|1[0-2])\1(?:0?[1-9]|1[0-9]|2[0-8])|(?:0?[13-9]|1[0-2])\1(?:29|30)|(?:0?[13578]|1[02])\1(?:31))|(?:[0-9]{2}(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)([-]?)0?2\2(?:29))$/i.test(value);
+					},
+					message: '清输入合适的日期格式'
+				},
+				msn: {
+					validator: function(value) {
+						return /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(value);
+					},
+					message: '请输入有效的msn账号(例：abc@hotnail(msn/live).com)'
+				},
+				equals: {
+					validator: function(value, param) {
+						if($("#" + param[0]).val() != "" && value != "") {
+							return $("#" + param[0]).val() == value;
+						} else {
+							return true;
+						}
+					},
+					message: '两次输入的密码不一致！'
+				},
+				compareDate: {
+					validator: function(value, param) {
+						return dateCompare($(param[0]).datetimebox('getValue'), value); //注意easyui 时间控制获取值的方式
+					},
+					message: '开始日期不能大于结束日期'
+				},
+				linkMan: {
+					validator: function(value, param) {
+						var pattern = /^[\u4e00-\u9fa5]{2,4}$|^[a-zA-Z]{2,20}$/gi;
+						return pattern.test(value);
+					},
+					message: "请输入2-4个汉字或者20个字母"
+				},
+				phoneMobile: { //手机或者固话
+					validator: function(value, param) {
+						var pattern = /(^(0[0-9]{2,3}\-)?([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$)|(^((\(\d{3}\))|(\d{3}\-))?(1[358]\d{9})$)/;
+						return pattern.test(value);
+					},
+					message: "请输入固话或者手机号"
+				},
+				postCode: {
+					validator: function(value, param) {
+						//var pattern = /^[1-9]\d{5}$/;
+						var pattern = /^[0-9]\d{5}$/;
+						return pattern.test(value);
+					},
+					message: "请输入邮编"
+				},
+				product: {
+					validator: function(value, param) {
+						var pattern = new RegExp("^([\u4e00-\u9fa5]|[,]|[，]|[“]|[”]|[\"]|[\"]){" + param[0] + "," + param[1] + "}$");
+						return pattern.test(value);
+					},
+					message: "请输入主要产品"
+				},
+				companyCode: {
+					validator: function(value, param) {
+						var pattern = new RegExp("[a-zA-Z0-9]{8}-[a-zA-Z0-9]");
+						return pattern.test(value);
+					},
+					message: "请输入组织机构代码证"
+				},
+				flEmpty: {
+					validator: function(value, param) {
+						var reg = /^[\s　]|[ ]$/gi;
+						return !reg.test(value);
+						//return !(/^\s+|\s+$/.test(value));
+					},
+					message: "首尾不能有空格"
+				},
+				timeDiff: { //时间范围验证
+					validator: function(value, param) {
+						//validType:'timeDiff[]'
+						if(param != undefined && param.length == 2) {
+							try {
+								var d1 = null,
+									curd = new Date(value.replace(/-/g, "/")),
+									d3 = null;
+								if(param[0] == 0) { //第一个参数=0 那么必须小于等于第二个参数
+									d3 = new Date(param[1].replace(/-/g, "/"));
+									rulesConfig.timeDiff.message = "您选择的时间必须大于等于{0}。";
+									return(curd <= d3);
+								} else if(param[1] == 0) { //第二个参数=0 那么必须大于等于第一个参数
+									d1 = new Date(param[0].replace(/-/g, "/"));
+									rulesConfig.timeDiff.message = "您选择的时间必须大于等于{0}。";
+									return(curd >= d1);
+								} else {
+									d1 = new Date(param[0].replace(/-/g, "/"));
+									d3 = new Date(param[1].replace(/-/g, "/"));
+									rulesConfig.timeDiff.message = "您选择的时间必须在{0}和{1}之间。";
+									return(d1 <= curd <= d3);
+								}
+							} catch(e) {
+								rulesConfig.timeDiff.message = "您选择的时间不正确。";
+								return false;
+
+							}
+
+							return false;
+						}
+						return true;
+
+						/*  var d = new Date(value.replace(/-/g, "/"))
+						 var d1 = null;
+						 var d2 = null;
+						 if (param[0] != undefined && param[1] != undefined) {//两个都不为空的时候需要在时间之间
+						 d1 = new Date(param[0].replace(/-/g, "/"));
+						 d2 = new Date(param[1].replace(/-/g, "/"));
+						 return (d1 < d1 < d2);
+						 } else if (param[1] != undefined) {//第二个参数不为空,则需要时间小于参数
+						 d2 = new Date(param[1].replace(/-/g, "/"));
+						 return (d < d2);
+						 } else if (param[0] != undefined) {//第一个参数不为空,则需要时间大于参数
+						 d1 = new Date(param[0].replace(/-/g, "/"));
+						 return (d > d1);
+						 }
+						 return true;*/
+					},
+					message: "时间范围选择有误{0}{1}"
+				},
+				code: {
+					validator: function(value, param) {
+						var reg = new RegExp("<.*?script[^>]*?>.*?(<\/.*?script.*?>)*", "ig");
+						return !reg.test(value);
+					},
+					message: "您输入了非法危险字符"
+				}
+			};
+		</script>
+	</body>
 
 </html>
