@@ -29,7 +29,7 @@
 
 						<div class="wrap-input100 validate-input m-b-23" data-validate="请输入用户名">
 							<span class="label-input100" style="font-size: 20px;">用户名</span>
-							<input class="input100" type="text" name="user.name" placeholder="请输入用户名" autocomplete="off" >
+							<input class="input100" type="text" name="user.name" placeholder="请输入用户名" autocomplete="off">
 							<span class="focus-input100" data-symbol="&#xf206;"></span>
 						</div>
 
@@ -86,12 +86,14 @@
 
 						<div class="wrap-input100 validate-input m-b-23" data-validate="请输入用户名">
 							<span class="label-input100" style="font-size: 20px;">用户名</span>
+							<span class="label-input100" style="font-size: 5px; color: red;">用户名只能是字母数字下划线必须以字母开头(5-19位)</span>
 							<input class="input100" type="text" name="user.name" placeholder="请输入用户名" autocomplete="off" id="username">
 							<span class="focus-input100" data-symbol="&#xf206;"></span>
 						</div>
 
 						<div class="wrap-input100 validate-input" data-validate="请输入密码">
 							<span class="label-input100" style="font-size: 20px;">密码</span>
+							<span class="label-input100" style="font-size: 5px; color: red;">密码由字母数字下划(5-19位)</span>
 							<input class="input100" type="password" name="user.password" placeholder="请输入密码" id="password">
 							<span class="focus-input100" data-symbol="&#xf190;"></span>
 						</div>
@@ -104,21 +106,22 @@
 
 						<div class="wrap-input100 validate-input" data-validate="请输入邮箱地址">
 							<span class="label-input100" style="font-size: 20px;">邮箱</span>
-							<input class="input100" type="text" name="user.email" placeholder="请输入邮箱地址">
+							<input class="input100" type="text" name="user.email" placeholder="请输入邮箱地址" id="email">
 							<span class="focus-input100" data-symbol="&#xf190;"></span>
 						</div>
 
 						<div class="wrap-input100 validate-input" data-validate="验证码">
 							<span class="label-input100" style="font-size: 20px;">验证码</span>
 							<button class="className">发送验证码</button>
-							<input class="input100" type="password" name="pass" placeholder="请输入验证码">
+							<span class="label-input100" style="font-size: 5px; color: red;">验证码(6位)</span>
+							<input class="input100" type="text" id="emailCode" name="user.code" placeholder="请输入验证码">
 							<span class="focus-input100" data-symbol="&#xf190;"></span>
 						</div>
 
 						<div class="container-login100-form-btn">
 							<div class="wrap-login100-form-btn">
 								<div class="login100-form-bgbtn"></div>
-								<button class="login100-form-btn">注册</button>
+								<button class="login100-form-btn" id="regisBtn" >注册</button>
 							</div>
 						</div>
 
@@ -161,110 +164,181 @@
 			}
 
 			//用户名合法性判断
-			$(":text").blur(function() { user(this,null) })
-			function user(obj,message)
-			{
+			$(":text").blur(function() {
+				user(this, null)
+			})
+
+			function user(obj, message) {
 				var username = obj.value;
 				var parent = $(obj).parent();
 				//parent.removeClass('alert-validate');
-				if(obj.getAttribute('name') != 'user.name'){
+				if(obj.getAttribute('name') != 'user.name') {
 					return;
 				}
-				if(rulesConfig.space.validator(username)|!rulesConfig.username.validator(username))
-				{
-					if(message === null){
-						parent.addClass('alert-validate').attr('data-validate',"用户名格式不合法");
-					}else{
-						parent.addClass('alert-validate').attr('data-validate',message.toString());
+				if(rulesConfig.space.validator(username) | !rulesConfig.username.validator(username)) {
+					if(message === null) {
+						parent.addClass('alert-validate').attr('data-validate', "用户名格式不合法");
+					} else {
+						parent.addClass('alert-validate').attr('data-validate', message.toString());
 					}
 					return false;
 				}
 				return true;
 			}
-			
+
 			//密码合法性验证
-			$(':password').blur(function(){	pass(this,null)})
-			function pass(obj,message)
-			{
+			$(':password').blur(function() {
+				pass(this, null)
+			})
+
+			function pass(obj, message) {
 				var password = obj.value;
 				var parent = $(obj).parent();
 				//parent.removeClass('alert-validate');
-				if(rulesConfig.space.validator(password)|!rulesConfig.pass.validator(password))
-				{
-					if(message===null){
-						parent.addClass('alert-validate').attr('data-validate','密碼格式不合法');
-					}else{
-						parent.addClass('alert-validate').attr('data-validate',message);
+				if(rulesConfig.space.validator(password) | !rulesConfig.pass.validator(password)) {
+					if(message === null) {
+						parent.addClass('alert-validate').attr('data-validate', '密碼格式不合法');
+					} else {
+						parent.addClass('alert-validate').attr('data-validate', message);
 					}
 					return false;
 				}
 				return true;
 			}
-			
+
 			//登录验证
-			function login(){
-				var flag = user($(":text"))&&pass($(':password'));
-				if(!flag){
+			function login() {
+				var flag = user($(":text")) && pass($(':password'));
+				if(!flag) {
 					return;
 				}
 				//something to do
 			}
-			
-			//发送验证码
-			$('.className').click(function(){
-				var time=60;
-				var btn=this;
-				btn.innerHTML='验证码('+60+')';
-				btn.disabled=true;
-				var start=window.setInterval(function(){
-					time--;
-					btn.innerHTML='验证码('+time+')';
-					if(time==0){
-						window.clearInterval(start);
-						btn.disabled=false;
-						btn.innerHTML='发送验证码';
-					}
-				},1000)
-			})
-			
+
 			//注册用户名验证
+			var userFlag = false;
 			$("#username").blur(
-				function(){
-					var flag=user(this,null);
-					if(flag){
+				function() {
+					var flag = user(this, null);
+					if(flag) {
 						//查询数据库
 					}
 				}
 			)
-			
+
 			//注册密码重复验证
-			$('.input100').blur(function(){
-				var obj=this;
-				var parent=$(this).parent();
-				if(this.getAttribute('name')=='pass'){
-					var flag=pass(this,null);
-					if(flag){
-						var two = $("#password").val();
-						if( obj.value != two ){
-							parent.addClass('alert-validate').attr('data-validate','两次输入密码不一致');
-						}
-					}
-				}
-			})
-			
-			//邮箱验证
-			var email=false;
-			$('.input100').blur(function(){
-				var obj=this;
+			var passwordFlag = false;
+			$('.input100').blur(function() {
+				var obj = this;
 				var parent = $(this).parent();
-				//parent.removeClass('alert-validate');
-				if(this.getAttribute('name') == 'user.email' ){
-					if(!rulesConfig.email.validator(obj.value)){
-						parent.addClass('alert-validate').attr('data-validate','邮箱地址不正确');
+				if(this.getAttribute('name') == 'pass') {
+					passwordFlag = false;
+					var flag = pass(this, null);
+					if(flag) {
+						var two = $("#password").val();
+						if(obj.value != two) {
+							parent.addClass('alert-validate').attr('data-validate', '两次输入密码不一致');
+							return;
+						}
+						passwordFlag = true;
 					}
 				}
 			})
-			
+
+			//邮箱验证
+			var emailFlag = false;
+			$('.input100').blur(function() {
+				mali(this)
+			})
+
+			function mali(obj) {
+				var parent = $(obj).parent();
+				//parent.removeClass('alert-validate');
+				if(obj.getAttribute('name') == 'user.email') {
+					emailFlag = false;
+					if(!rulesConfig.email.validator(obj.value)) {
+						parent.addClass('alert-validate').attr('data-validate', '邮箱地址不正确');
+						return;
+					}
+					emailFlag = true;
+				}
+			}
+
+			//发送验证码按钮
+			$('.className').click(function() {
+				if(emailFlag) {
+					//验证邮箱 可用性和发送验证码
+
+					sendCode(this);
+				}
+			})
+
+			//发送验证码
+			function sendCode(btn) {
+				var time = 60;
+				btn.innerHTML = '验证码(' + 60 + ')';
+				btn.disabled = true;
+				var start = window.setInterval(function() {
+					time--;
+					btn.innerHTML = '验证码(' + time + ')';
+					if(time == 0) {
+						window.clearInterval(start);
+						btn.disabled = false;
+						btn.innerHTML = '发送验证码';
+					}
+				}, 1000)
+			}
+
+			//验证码格式校验
+			var codeFlag = false;
+			$('#emailCode').blur(function() {
+				code(this);
+			});
+
+			function code(obj) {
+				codeFlag = false;
+				var parent = $(obj).parent();
+				if(!rulesConfig.emailCode.validator(obj.value)) {
+					parent.addClass('alert-validate').attr('data-validate', '验证码格式不正确');
+					return;
+				}
+				codeFlag = true;
+			}
+
+			//注册按钮点击事件
+			$('#regisBtn').click(function() {
+				if(userFlag && passwordFlag && emailFlag && codeFlag) {
+					//注册数据库
+				} else {
+					alert('请检查用户信息是否填写有误')
+				}
+				var dataParm ={
+					user:{
+					'name': $('#username').val(),
+					'password': $('#password').val(),
+					'email': $('#email').val(),
+					'code': $('#emailCode').val()
+					}
+				}
+
+				$.ajax({
+						type: 'POST',
+						url: 'http://localhost:8080/regist/login.html',
+						data: dataParm,
+						dataType: 'jsonp',
+						async: true,
+						//jsonp:'calback',
+						//					success:function(data){
+						//						alert()
+						//						console.log(data)
+						//					}
+
+					})
+					.done(function(data) {
+						console.log(data)
+					})
+			})
+
 			var rulesConfig = {
 				/**
 				 * str.replace(/^\s+|\s+$/g, '')
@@ -290,26 +364,33 @@
 					n? 匹配任何包含零个或一个n的字符串
 				 */
 				email: {
-					validator: function(value){
+					validator: function(value) {
 						return /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/.test(value);
 					},
 					message: '邮箱格式不对'
 				},
-				
+
+				emailCode: {
+					validator: function(value) {
+						return /^[a-zA-Z0-9]{6}$/.test(value);
+					},
+					message: '验证码格式不对'
+				},
+
 				pass: {
-					validator: function(value){
-						return /^[!@#$%^&*a-zA-Z0-9_.]{6,15}$/.test(value);
+					validator: function(value) {
+						return /^[!@#$%^&*a-zA-Z0-9_.]{5,19}$/.test(value);
 					},
 					message: '密碼格式不正確'
 				},
-				
-				space: {//空格开头或者结尾匹配
-					validator: function(value){
+
+				space: { //空格开头或者结尾匹配
+					validator: function(value) {
 						return /^\s+|\s+$/.test(value);
 					},
 					message: '用户名不能以空格开头或者结尾'
 				},
-				
+
 				idcard: { // 验证身份证
 					validator: function(value) {
 						return /^\d{15}(\d{2}[A-Za-z0-9])?$/i.test(value);
