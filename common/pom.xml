@@ -16,6 +16,13 @@
 
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 阿帕奇的工具类-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.8.1</version>
+        </dependency>
+
         <!-- import openfeign -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

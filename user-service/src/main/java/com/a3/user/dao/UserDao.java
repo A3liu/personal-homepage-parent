@@ -14,4 +14,6 @@ public interface UserDao {
     int updateByPrimaryKeySelective(UserEntity record);
 
     int updateByPrimaryKey(UserEntity record);
+
+    int findUsername(String username);
 }

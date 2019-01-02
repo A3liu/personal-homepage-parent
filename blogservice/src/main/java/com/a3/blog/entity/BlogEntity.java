@@ -14,7 +14,7 @@ public class BlogEntity implements Serializable {
 
     private String authorId;
 
-    private String likes;
+    private Integer likes;
 
     private Date createdTime;
 
@@ -50,11 +50,11 @@ public class BlogEntity implements Serializable {
         this.authorId = authorId;
     }
 
-    public String getLikes() {
+    public Integer getLikes() {
         return likes;
     }
 
-    public void setLikes(String likes) {
+    public void setLikes(Integer likes) {
         this.likes = likes;
     }
 

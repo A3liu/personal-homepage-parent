@@ -5,11 +5,10 @@ import com.a3.user.dao.UserDao;
 import com.a3.user.entity.UserEntity;
 import com.a3.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("user/")
 public class UserController {
 
     @Autowired
@@ -29,10 +28,9 @@ public class UserController {
         return "userService"+id;
     }
 
-    @RequestMapping("/createUser")
-    public ResultObject createUser(UserEntity userEntity){
-        userService.createUser(userEntity);
-        return ResultObject.build();
+    @PutMapping("/createUser")
+    public ResultObject createUser(@RequestBody UserEntity userEntity){
+        return ResultObject.build(userService.createUser(userEntity));
     }
 
 }

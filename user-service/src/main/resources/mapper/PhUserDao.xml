@@ -17,23 +17,23 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from ph_user
+    from user
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from ph_user
+    delete from user
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.a3.user.entity.UserEntity" useGeneratedKeys="true">
-    insert into ph_user (user_name, `password`, salt, 
+  <insert id="insert" parameterType="com.a3.user.entity.UserEntity">
+    insert into user (id,user_name, `password`, salt,
       nick_name, created_time, last_modified_time, 
       created_by)
-    values (#{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, 
+    values (#{id},#{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR},
       #{nickName,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{lastModifiedTime,jdbcType=TIMESTAMP}, 
       #{createdBy,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.a3.user.entity.UserEntity" useGeneratedKeys="true">
-    insert into ph_user
+    insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userName != null">
         user_name,
@@ -82,7 +82,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.a3.user.entity.UserEntity">
-    update ph_user
+    update user
     <set>
       <if test="userName != null">
         user_name = #{userName,jdbcType=VARCHAR},
@@ -109,7 +109,7 @@
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.a3.user.entity.UserEntity">
-    update ph_user
+    update user
     set user_name = #{userName,jdbcType=VARCHAR},
       `password` = #{password,jdbcType=VARCHAR},
       salt = #{salt,jdbcType=VARCHAR},
@@ -119,4 +119,8 @@
       created_by = #{createdBy,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
+  <select id="findUsername" resultType="int">
+    select count(*) from user where user_name=#{username}
+  </select>
 </mapper>

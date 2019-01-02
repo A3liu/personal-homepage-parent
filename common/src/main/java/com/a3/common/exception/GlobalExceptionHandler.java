@@ -3,6 +3,7 @@ package com.a3.common.exception;
 import com.a3.common.pojo.ResultObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,6 +23,7 @@ public class GlobalExceptionHandler {
         logger.error("------------------------Exception------------------------");
         logger.error(e.getMessage());
         logger.error("------------------------Exception------------------------");
+        printStackTrace(e);
         return ResultObject.error(e,"错误,请联系管理员");
     }
 
@@ -31,7 +33,22 @@ public class GlobalExceptionHandler {
         logger.error("------------------------ServiceException------------------------");
         logger.error(e.getMessage());
         logger.error("------------------------ServiceException------------------------");
+        printStackTrace(e);
         return ResultObject.error(e);
+    }
+
+    public void printStackTrace(Exception e){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
+                e.printStackTrace();
+            }
+        }).start();
     }
 
 }
