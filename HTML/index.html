@@ -51,7 +51,7 @@
 						</div>
 
 						<div class="txt1 text-center p-t-54 p-b-20">
-							<span>第三方登录</span>
+							<span>第三方登录</span><span id="myVue">{{message}}</span>
 						</div>
 
 						<div class="flex-c-m">
@@ -136,7 +136,18 @@
 
 		<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 		<script src="js/main.js"></script>
+		<script type="text/javascript" src="js/vue.js" ></script>
 		<script>
+			//vue.js
+			new Vue({
+				el:'#myVue',
+				data:{
+					message:'你好呀'
+				}
+			})
+			
+			/** vue*/
+			
 			//时间计数
 			window.setInterval(function() {
 				$(".time").html(time())
