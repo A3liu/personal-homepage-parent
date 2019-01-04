@@ -46,12 +46,12 @@
 						<div class="container-login100-form-btn">
 							<div class="wrap-login100-form-btn">
 								<div class="login100-form-bgbtn"></div>
-								<button class="login100-form-btn" onclick="login()">登 录</button>
+								<button class="login100-form-btn"  v-on:click="log">登 录</button>
 							</div>
 						</div>
 
 						<div class="txt1 text-center p-t-54 p-b-20">
-							<span>第三方登录</span><span id="myVue">{{message}}</span>
+							<span>第三方登录</span>
 						</div>
 
 						<div class="flex-c-m">
@@ -140,9 +140,14 @@
 		<script>
 			//vue.js
 			new Vue({
-				el:'#myVue',
+				el:'.login100-form-btn',
 				data:{
 					message:'你好呀'
+				},
+				methods:{
+					log:function(){
+						alert("你点击登陆按钮了大兄弟")
+					}
 				}
 			})
 			
