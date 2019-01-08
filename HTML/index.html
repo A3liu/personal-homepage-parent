@@ -46,7 +46,7 @@
 						<div class="container-login100-form-btn">
 							<div class="wrap-login100-form-btn">
 								<div class="login100-form-bgbtn"></div>
-								<button class="login100-form-btn" onclick="login()">登 录</button>
+								<button class="login100-form-btn"  v-on:click="log">登 录</button>
 							</div>
 						</div>
 
@@ -136,7 +136,23 @@
 
 		<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 		<script src="js/main.js"></script>
+		<script type="text/javascript" src="js/vue.js" ></script>
 		<script>
+			//vue.js
+			new Vue({
+				el:'.login100-form-btn',
+				data:{
+					message:'你好呀'
+				},
+				methods:{
+					log:function(){
+						alert("你点击登陆按钮了大兄弟")
+					}
+				}
+			})
+			
+			/** vue*/
+			
 			//时间计数
 			window.setInterval(function() {
 				$(".time").html(time())
