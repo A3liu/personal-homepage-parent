@@ -1,5 +1,12 @@
 package com.a3.user.entity;
 
+
+import org.hibernate.validator.constraints.Length;
+
+import javax.annotation.Nullable;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -8,10 +15,15 @@ import java.util.Date;
  * @author 
  */
 public class UserEntity implements Serializable {
+    @Nullable
     private String id;
-
+    @NotBlank(message = "request param check failed")
+    @Length(min = 10,max = 20,message = "request param check failed")
+    @Pattern(regexp = "^[A-Za-z\\d]{6,10}$",message = "request param check failed")
     private String userName;
-
+    @NotBlank(message = "request param check failed")
+    @Length(min = 10,max = 30,message = "request param check failed")
+    @Pattern(regexp = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$",message = "request param check failed")
     private String password;
 
     private String salt;

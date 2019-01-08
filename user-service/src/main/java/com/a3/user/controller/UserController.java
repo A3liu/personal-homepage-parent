@@ -7,6 +7,8 @@ import com.a3.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("user/")
 public class UserController {
@@ -29,7 +31,7 @@ public class UserController {
     }
 
     @PutMapping("/createUser")
-    public ResultObject createUser(@RequestBody UserEntity userEntity){
+    public ResultObject createUser(@Valid @RequestBody UserEntity userEntity){
         return ResultObject.build(userService.createUser(userEntity));
     }
 
