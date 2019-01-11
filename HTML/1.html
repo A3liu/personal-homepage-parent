@@ -1,0 +1,32 @@
+<html>
+
+	<head>
+		<title>弹出一个窗口后，后面的层不可操作</title>
+		<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+		<script>
+			function show() //显示隐藏层和弹出层
+			{
+				//alert()
+				$.ajax({
+					url: "http://localhost:8080/regist/login.html",
+					type: "get",
+					dataType: "jsonp",
+					data:null,
+					//jsonp: 'callback',
+					//jsonpCallback: "successCallback",
+					success: function(json) {
+							console.log(json)
+					},
+					error:function(json){
+						console.log(json)
+					}
+				})
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="content" onClick="show();">点击试试</div>
+	</body>
+
+</html>

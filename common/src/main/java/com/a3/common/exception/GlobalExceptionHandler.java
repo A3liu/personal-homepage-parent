@@ -27,14 +27,23 @@ public class GlobalExceptionHandler {
     @Autowired
     private ThreadPoolTaskExecutor pool;
 
+    
+    /**
+     *  感觉此处定义一个异常就可以了，只要是其子类异常都可以被捕获
+     * @param e
+     * @return
+     */
     @ResponseBody
     @ExceptionHandler(Exception.class)
     public ResultObject globalExceptionHandler(Exception e) {
-        logger.error("------------------------Exception------------------------");
-        logger.error(e.getMessage());
+    	UUID randomUUID = UUID.randomUUID();
+    	String marked =randomUUID.toString();
+        logger.error("-------------------------Exception------------------------");
+        //e.getMessage()有时候不会有message
+        logger.error("异常编码号:"+marked+"/r/n",e);
         logger.error("------------------------Exception------------------------");
         printStackTrace(e);
-        return ResultObject.error(e, "错误,请联系管理员");
+        return ResultObject.error(e, "错误编码"+marked+",请联系管理员");
     }
 
     @ResponseBody
