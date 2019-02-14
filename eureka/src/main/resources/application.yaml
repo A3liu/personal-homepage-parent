@@ -1,6 +1,7 @@
 server:
   #访问自己默认打开监控主页:localhost:3333
   port: 3333
+
 eureka:
   server:
     #扫描失效服务的间隔时间（缺省为60*1000ms）
@@ -19,7 +20,8 @@ eureka:
     # 自己是否检索其他服务，默认为true,改为false
     fetch-registry: false
     service-url:
-      defaultZone: http://localhost:3333/eureka
+      #用户名密码
+      defaultZone: http://user:password123@localhost:3333/eureka
 logging:
   level:
     root: INFO
