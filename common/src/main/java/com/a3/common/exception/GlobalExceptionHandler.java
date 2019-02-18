@@ -52,7 +52,6 @@ public class GlobalExceptionHandler {
         logger.error("------------------------ServiceException------------------------");
         logger.error(e.getMessage());
         logger.error("------------------------ServiceException------------------------");
-        printStackTrace(e);
         return ResultObject.error(e);
     }
 
