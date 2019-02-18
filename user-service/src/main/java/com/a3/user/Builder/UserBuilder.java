@@ -38,9 +38,9 @@ public class UserBuilder {
         if(StringUtils.isAnyEmpty(user.getUserName(),user.getPassword())){
             ExceptionUtil.invalidParam();
         }
-        if(!user.getPassword().matches("^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$")){
-            ExceptionUtil.error("password too weak!");
-        }
+//        if(!user.getPassword().matches("^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$")){
+//            ExceptionUtil.error("password too weak!");
+//        }
         if(!user.getUserName().matches("^[A-Za-z\\d]{6,10}$")){
             ExceptionUtil.error("incorrect username");
         }

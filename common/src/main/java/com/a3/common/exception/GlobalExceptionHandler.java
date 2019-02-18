@@ -29,7 +29,7 @@ public class GlobalExceptionHandler {
 
     
     /**
-     *  感觉此处定义一个异常就可以了，只要是其子类异常都可以被捕获
+     *
      * @param e
      * @return
      */
@@ -39,7 +39,6 @@ public class GlobalExceptionHandler {
     	UUID randomUUID = UUID.randomUUID();
     	String marked =randomUUID.toString();
         logger.error("-------------------------Exception------------------------");
-        //e.getMessage()有时候不会有message
         logger.error("异常编码号:"+marked+"/r/n",e);
         logger.error("------------------------Exception------------------------");
         printStackTrace(e);
@@ -51,6 +50,7 @@ public class GlobalExceptionHandler {
     public ResultObject serviceExceptionHandler(ServiceException e) {
         logger.error("------------------------ServiceException------------------------");
         logger.error(e.getMessage());
+        printStackTrace(e);
         logger.error("------------------------ServiceException------------------------");
         return ResultObject.error(e);
     }
@@ -58,10 +58,10 @@ public class GlobalExceptionHandler {
     @ResponseBody
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResultObject methodArgumentNotValidHandler(MethodArgumentNotValidException e) {
-        ResultObject error = ResultObject.error("param check failed");
+        ResultObject error = ResultObject.error("request parameters validate failed");
         List<ObjectError> allErrors = e.getBindingResult().getAllErrors();
-        List<Map<String, Object>> errors = new ArrayList<>();
-        allErrors.forEach(t->errors.add(new HashMap<String, Object>(){{put("message",t.getDefaultMessage());put("error detail",t.getCodes());}}));
+        List<String> errors = new ArrayList<>();
+        allErrors.forEach(t->errors.add(t.getDefaultMessage()));
         error.setResult(errors);
         return error;
     }

@@ -1,6 +1,7 @@
 package com.a3.user.entity;
 
 
+import com.a3.common.consts.RegexConst;
 import org.hibernate.validator.constraints.Length;
 
 import javax.annotation.Nullable;
@@ -15,15 +16,18 @@ import java.util.Date;
  * @author 
  */
 public class UserEntity implements Serializable {
+
     @Nullable
     private String id;
-    @NotBlank(message = "request param check failed")
-    @Length(min = 10,max = 20,message = "request param check failed")
-    @Pattern(regexp = "^[A-Za-z\\d]{6,10}$",message = "request param check failed")
+
+    @NotBlank(message = "userName is required")
+    @Length(min = 6,max = 20,message = "userName's length must be between min 6 max 20")
+    @Pattern(regexp = RegexConst.USER_NAME,message = "userName regex check failed. user name only allows numeric uppercase and lowercase letters.")
     private String userName;
-    @NotBlank(message = "request param check failed")
-    @Length(min = 10,max = 30,message = "request param check failed")
-    @Pattern(regexp = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$",message = "request param check failed")
+
+    @NotBlank(message = "password is required")
+    @Length(min = 6,max = 30,message = "password length check failed, length of password must be between min 6 max 30 characters.")
+    @Pattern(regexp = RegexConst.PASSWORD,message = "password regex check failed. password only allows numeric uppercase and lowercase letters.")
     private String password;
 
     private String salt;

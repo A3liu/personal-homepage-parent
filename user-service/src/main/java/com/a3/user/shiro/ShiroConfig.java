@@ -22,7 +22,7 @@ import org.springframework.context.annotation.Configuration;
  * @author Donald 2019-01-17 21:29
  *
  */
-@Configuration
+//@Configuration
 public class ShiroConfig {
 
     @Bean("shiroFilterFactoryBean")
