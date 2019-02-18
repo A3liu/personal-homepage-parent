@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎来到刘耀森的个人博客</title>
+    <script src="axios.min.js"></script>
+    <script src="base.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h1>欢迎来到刘耀森的个人博客</h1>
+    <br/>
+    <div id="regist">
+        <h4>这只是一个简单的注册</h4>
+        userName:<input v-model="userName"/>
+        password:<input v-model="password"/>
+        <button v-on:click="regist">发送注册信息到user-service</button>
+    </div>
+</body>
+</html>
+<script>
+    window.onload=function () {
+        var regist=new Vue({
+            el:"#regist",
+            data:{
+                userName:null,
+                password:null
+            },
+            methods:{
+                regist(){
+                    console.log(this.userName)
+                    axios.put(baseURL+"/user/createUser",{userName:this.userName,password:this.password},)
+                        .then(function(resp){alert("创建用户成功!id:"+resp.msg)})
+                        .catch(function(resp){console.log(resp.response.data.result)})
+                }
+            }
+        })
+    }
+</script>

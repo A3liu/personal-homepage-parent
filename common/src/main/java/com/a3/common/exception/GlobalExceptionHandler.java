@@ -4,6 +4,7 @@ import com.a3.common.pojo.ResultObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.*;
 
@@ -33,6 +35,7 @@ public class GlobalExceptionHandler {
      * @param e
      * @return
      */
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     @ExceptionHandler(Exception.class)
     public ResultObject globalExceptionHandler(Exception e) {
@@ -44,7 +47,7 @@ public class GlobalExceptionHandler {
         printStackTrace(e);
         return ResultObject.error(e, "错误编码"+marked+",请联系管理员");
     }
-
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     @ExceptionHandler(ServiceException.class)
     public ResultObject serviceExceptionHandler(ServiceException e) {
@@ -54,7 +57,7 @@ public class GlobalExceptionHandler {
         logger.error("------------------------ServiceException------------------------");
         return ResultObject.error(e);
     }
-
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResultObject methodArgumentNotValidHandler(MethodArgumentNotValidException e) {
