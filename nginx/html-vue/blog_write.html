@@ -3,8 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>写新博客</title>
+    <script src="js/base.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/trumbowyg.min.js"></script>
+
+    <link rel="stylesheet" href="css/trumbowyg.css">
 </head>
 <body>
-
+    <div id="screen">
+        <input id="title"/>
+        <div id="write">
+            {{message}}
+        </div>
+        <button id="submit">提交</button>
+    </div>
 </body>
 </html>
+
+<script>
+    window.onload=function(){
+        $('#write').trumbowyg();
+
+        $("#submit").click(function () {
+            //$(selector).get(url,data,success(response,status,xhr),dataType)
+            $.ajax({
+                url:baseURL+"/blog/creatBlog",
+                type:"put",
+                data:JSON.stringify({title:$("#title").html(),content:$("#write").html()}),
+                contentType:"application/json",
+                success:function(data){
+                console.log(data)
+            }})
+        })
+    }
+</script>

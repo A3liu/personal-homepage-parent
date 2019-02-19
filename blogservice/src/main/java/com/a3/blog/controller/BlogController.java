@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Date: 2018/12/27 12:43
  */
 @RestController
+@RequestMapping("blog")
 public class BlogController {
     @Autowired
     UserFeignService userFeignService;
